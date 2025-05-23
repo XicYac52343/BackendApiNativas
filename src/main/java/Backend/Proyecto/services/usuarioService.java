@@ -132,4 +132,14 @@ public class usuarioService {
             return new ResponseEntity<>(datos, HttpStatus.NOT_FOUND);
         }
     }
+
+    public ResponseEntity<Object> iniciarSesion(usuario usuario){
+        List<usuario> listaUsuario = this.usuarioRepository.findAll();
+        for(int i = 0; i < listaUsuario.size(); i++){
+            if(listaUsuario.get(i).getCorreo().equals(usuario.getCorreo()) && listaUsuario.get(i).getContrasenia().equals(usuario.getContrasenia())){
+                return ResponseEntity.ok().body(listaUsuario.get(i).getId());
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

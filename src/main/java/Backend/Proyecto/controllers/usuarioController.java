@@ -2,6 +2,7 @@ package Backend.Proyecto.controllers;
 
 import Backend.Proyecto.models.usuario;
 import Backend.Proyecto.services.usuarioService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,11 @@ public class usuarioController {
     @PostMapping
     public ResponseEntity<Object> crearUsuario(@RequestBody usuario usuario) {
         return this.usuarioService.crearUsuario(usuario);
+    }
+
+    @PostMapping(path="iniciarSesion")
+    public ResponseEntity<Object> iniciarSesion(@RequestBody usuario usuario) {
+        return this.usuarioService.iniciarSesion(usuario);
     }
 
     @PutMapping
